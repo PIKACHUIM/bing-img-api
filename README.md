@@ -21,6 +21,7 @@
 
 ```
 https://images.opkg.us.kg/[<>|<genshin>|<bingimg>]?random=0|1&number=0|..&images=0|1|2
+https://images.524228.xyz/[<>|<genshin>|<bingimg>]?random=0|1&number=0|..&images=0|1|2
 ```
 
 ### 接口说明
