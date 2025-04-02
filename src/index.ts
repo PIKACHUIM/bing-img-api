@@ -37,6 +37,18 @@ app.get('/genshin', setSecurityHeaders, async (c) => {
     console.log(imageUrl);
     return results(c, imageUrl, "image/webp");
 });
+// 苹果风景路由 ========================================================================================================
+app.get('/macview', setSecurityHeaders, async (c) => {
+    const imageUrl = await macosde(c, 'view', 400);
+    console.log(imageUrl);
+    return results(c, imageUrl, "image/webp");
+});
+// 苹果经典路由 ========================================================================================================
+app.get('/macbase', setSecurityHeaders, async (c) => {
+    const imageUrl = await macosde(c, 'base', 80);
+    console.log(imageUrl);
+    return results(c, imageUrl, "image/webp");
+});
 
 // 响应图片结果 ========================================================================================================
 async function results(c, url: string, sub: string = 'image/jpeg') {
@@ -66,6 +78,8 @@ async function parsers(c, num: number = 0) {
     let random: string = <string>c.req.query('random')
     if (random != undefined && random != "" && random != "0")
         return Math.floor(Math.random() * num) + 1;
+    if (number == undefined || number == "" || number == "0")
+        return Math.floor(Math.random() * num) + 1;
     return Number(number) % num;
 }
 
@@ -94,6 +108,15 @@ async function genshin(c) {
     return `https://oneapi.524228.xyz/img/yuanshenpic/image_${targetNum
         .toString()
         .padStart(3, '0')}.webp`;
+}
+
+async function macosde(c, type: string, nums: number = 80) {
+    // 生成随机数或使用指定值 ===========================================================================
+    const targetNum = Math.floor(await parsers(c, nums)) + 1;
+    // 格式化为三位数并拼接 URL =========================================================================
+    return `https://oneapi.524228.xyz/img/macosde` + type + `/${targetNum
+        .toString()
+        .padStart(3, '0')}.jpg`;
 }
 
 export default app;
