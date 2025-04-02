@@ -46,9 +46,8 @@ https://images.524228.xyz/[<>|<genshin>|<bingimg>]?random=0|1&number=0|..&images
   ```
   https://images.524228.xyz/?random=1
   https://images.524228.xyz/bingimg?random=1
-  https://images.524228.xyz/bingimg
   ```
-
+  
 - 返回Bing指定图片（指定第10天）
 
   ```
