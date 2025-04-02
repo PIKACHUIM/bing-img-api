@@ -20,7 +20,6 @@
 ### 接口地址
 
 ```
-https://images.opkg.us.kg/[<>|<genshin>|<bingimg>]?random=0|1&number=0|..&images=0|1|2
 https://images.524228.xyz/[<>|<genshin>|<bingimg>]?random=0|1&number=0|..&images=0|1|2
 ```
 
@@ -37,66 +36,66 @@ https://images.524228.xyz/[<>|<genshin>|<bingimg>]?random=0|1&number=0|..&images
 - 返回Bing今日图片（当天的图片）
 
   ```
-  https://images.opkg.us.kg/
-  https://images.opkg.us.kg/bingimg
-  https://images.opkg.us.kg/bingimg?number=0
+  https://images.524228.xyz/
+  https://images.524228.xyz/bingimg
+  https://images.524228.xyz/bingimg?number=0
   ```
 
 - 返回Bing随机图片（随机1~10天）
 
   ```
-  https://images.opkg.us.kg/?random=1
-  https://images.opkg.us.kg/bingimg?random=1
-  https://images.opkg.us.kg/bingimg
+  https://images.524228.xyz/?random=1
+  https://images.524228.xyz/bingimg?random=1
+  https://images.524228.xyz/bingimg
   ```
 
 - 返回Bing指定图片（指定第10天）
 
   ```
-  https://images.opkg.us.kg/?number=10
-  https://images.opkg.us.kg/bingimg?number=10
+  https://images.524228.xyz/?number=10
+  https://images.524228.xyz/bingimg?number=10
   ```
 
 - 返回原神随机图片（随机抽一张）
 
   ```
-  https://images.opkg.us.kg/genshin?random=1
+  https://images.524228.xyz/genshin?random=1
   ```
 
 - 返回原神指定图片（指定某一张）
 
   ```
-  https://images.opkg.us.kg/genshin?number=100
+  https://images.524228.xyz/genshin?number=100
   ```
 
 - 文本形式返回链接
 
   ```
-  https://images.opkg.us.kg/?images=1
-  https://images.opkg.us.kg/bingimg?images=1
-  https://images.opkg.us.kg/bingimg?number=0&images=1
-  https://images.opkg.us.kg/?random=1&images=1
-  https://images.opkg.us.kg/bingimg?random=1&images=1
-  https://images.opkg.us.kg/bingimg?images=1
-  https://images.opkg.us.kg/?number=10&images=1
-  https://images.opkg.us.kg/bingimg?number=10&images=1
-  https://images.opkg.us.kg/genshin?random=1&images=1
-  https://images.opkg.us.kg/genshin?number=100&images=1
+  https://images.524228.xyz/?images=1
+  https://images.524228.xyz/bingimg?images=1
+  https://images.524228.xyz/bingimg?number=0&images=1
+  https://images.524228.xyz/?random=1&images=1
+  https://images.524228.xyz/bingimg?random=1&images=1
+  https://images.524228.xyz/bingimg?images=1
+  https://images.524228.xyz/?number=10&images=1
+  https://images.524228.xyz/bingimg?number=10&images=1
+  https://images.524228.xyz/genshin?random=1&images=1
+  https://images.524228.xyz/genshin?number=100&images=1
   ```
 
 - 重定向到图片地址
 
   ```
-  https://images.opkg.us.kg/?images=2
-  https://images.opkg.us.kg/bingimg?images=2
-  https://images.opkg.us.kg/bingimg?number=0&images=2
-  https://images.opkg.us.kg/?random=1&images=2
-  https://images.opkg.us.kg/bingimg?random=1&images=2
-  https://images.opkg.us.kg/bingimg?images=2
-  https://images.opkg.us.kg/?number=10&images=2
-  https://images.opkg.us.kg/bingimg?number=10&images=2
-  https://images.opkg.us.kg/genshin?random=1&images=2
-  https://images.opkg.us.kg/genshin?number=100&images=2
+  https://images.524228.xyz/?images=2
+  https://images.524228.xyz/bingimg?images=2
+  https://images.524228.xyz/bingimg?number=0&images=2
+  https://images.524228.xyz/?random=1&images=2
+  https://images.524228.xyz/bingimg?random=1&images=2
+  https://images.524228.xyz/bingimg?images=2
+  https://images.524228.xyz/?number=10&images=2
+  https://images.524228.xyz/bingimg?number=10&images=2
+  https://images.524228.xyz/genshin?random=1&images=2
+  https://images.524228.xyz/genshin?number=100&images=2
   ```
 
   
