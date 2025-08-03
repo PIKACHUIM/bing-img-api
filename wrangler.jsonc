@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "bing-img-work",
+  "name": "cfworker-img",
   "main": "src/index.ts",
   "compatibility_date": "2025-02-28"
 }
