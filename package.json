@@ -1,14 +1,24 @@
 {
   "name": "bing-img-work",
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify"
+    "dev-cf": "wrangler dev --config wrangler.encrypt.jsonc",
+    "deploy-cf": "wrangler deploy --minify --config wrangler.encrypt.jsonc",
+    "dev-eo": "edgeone pages dev",
+    "build-eo": "edgeone pages build",
+    "deploy-eo": "edgeone pages deploy ./ -n cfworker-img -t ",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
-    "hono": "^4.7.2"
+    "hono": "^4.7.2",
+    "dotenv": "^17.0.1",
+    "edgeone": "^1.0.27"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250214.0",
-    "wrangler": "^3.109.2"
+    "wrangler": "^3.101.0",
+    "typescript": "^5.8.3",
+    "esbuild": "^0.25.5",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }

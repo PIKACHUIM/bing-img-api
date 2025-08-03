@@ -4,7 +4,7 @@ type Bindings = {
     // 如果使用 Cloudflare 环境变量可在此定义
 };
 
-const app = new Hono<{ Bindings: Bindings }>();
+export const app = new Hono<{ Bindings: Bindings }>();
 
 // 错误处理中间件
 app.onError((err, c) => {
@@ -15,43 +15,45 @@ app.onError((err, c) => {
 // 响应头中间件
 const setSecurityHeaders = async (c: any, next: any) => {
     await next();
-    // c.header('Cache-Control', 'public, max-age=14400'); // 4 小时缓存
-    // c.header('CDN-Cache-Control', 'public, max-age=86400'); // 24 小时 CDN 缓存
+    c.header('Cache-Control', 'public, max-age=60'); // 4 小时缓存
+    c.header('CDN-Cache-Control', 'public, max-age=60'); // 24 小时 CDN 缓存
 };
 
 
 // 每日图片路由 ========================================================================================================
 app.get('/', setSecurityHeaders, async (c) => {
-    const imageUrl = await bing_cn(c);
-    return results(c, imageUrl);
+    return await picture(c, bing_cn, 'base', 0);
 });
 
 // 每日图片路由 ========================================================================================================
 app.get('/bingimg', setSecurityHeaders, async (c) => {
-    const imageUrl = await bing_cn(c);
-    return results(c, imageUrl);
+    return await picture(c, bing_cn, 'base', 0);
 });
 // 原神图片路由 ========================================================================================================
 app.get('/genshin', setSecurityHeaders, async (c) => {
-    const imageUrl = await genshin(c);
-    console.log(imageUrl);
-    return results(c, imageUrl, "image/webp");
+    return await picture(c, genshin, 'base', 0);
 });
 // 苹果风景路由 ========================================================================================================
 app.get('/macview', setSecurityHeaders, async (c) => {
-    const imageUrl = await macosde(c, 'view', 400);
-    console.log(imageUrl);
-    return results(c, imageUrl, "image/webp");
+    return await picture(c, macosde, 'view', 400);
 });
 // 苹果经典路由 ========================================================================================================
 app.get('/macbase', setSecurityHeaders, async (c) => {
-    const imageUrl = await macosde(c, 'base', 80);
-    console.log(imageUrl);
-    return results(c, imageUrl, "image/webp");
+    return await picture(c, macosde, 'base', 80);
 });
 
+async function picture(c: any, f: any, type: string, lens: number) {
+    try {
+        const imageUrl = await f(c, type, lens);
+        console.log(imageUrl);
+        return results(c, imageUrl, "image/webp");
+    } catch (err) {
+        return c.text(err);
+    }
+}
+
 // 响应图片结果 ========================================================================================================
-async function results(c, url: string, sub: string = 'image/jpeg') {
+async function results(c: any, url: string, sub: string = 'image/jpeg') {
     let images: string = <string>c.req.query('images')
     if (images != undefined && images != "") {
         if (images == "1")
@@ -73,7 +75,7 @@ async function results(c, url: string, sub: string = 'image/jpeg') {
 }
 
 // 处理传入参数 ========================================================================================================
-async function parsers(c, num: number = 0) {
+async function parsers(c: any, num: number = 0) {
     let number: string = <string>c.req.query('number')
     let random: string = <string>c.req.query('random')
     if (random != undefined && random != "" && random != "0")
@@ -83,7 +85,7 @@ async function parsers(c, num: number = 0) {
     return Number(number) % num;
 }
 
-async function bing_cn(c) {
+async function bing_cn(c: any, type: string, nums: number = 8) {
     try {
         // 请求 Bing API ===============================================================================
         const apiResponse = await fetch(
@@ -101,7 +103,7 @@ async function bing_cn(c) {
     }
 }
 
-async function genshin(c) {
+async function genshin(c: any, type: string, nums: number = 0) {
     // 生成随机数或使用指定值 ===========================================================================
     const targetNum = Math.floor(await parsers(c, 330)) + 1;
     // 格式化为三位数并拼接 URL =========================================================================
@@ -110,7 +112,7 @@ async function genshin(c) {
         .padStart(3, '0')}.webp`;
 }
 
-async function macosde(c, type: string, nums: number = 80) {
+async function macosde(c: any, type: string, nums: number = 80) {
     // 生成随机数或使用指定值 ===========================================================================
     const targetNum = Math.floor(await parsers(c, nums)) + 1;
     // 格式化为三位数并拼接 URL =========================================================================
